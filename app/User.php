@@ -19,7 +19,8 @@ class User extends Authenticatable
 
     protected $fillable = [
         'id','nama_lengkap', 'email', 'password','nama_ortu','pekerjaan_ortu','tempat_lahir','tanggal_lahir','phone','foto',
-        'alamat_rumah', 'sekolah_asal', 'alamat_sekolah', 'asal_ssb', 'gol_darah','tinggi','berat','penyakit','kelas'
+        'alamat_rumah', 'sekolah_asal', 'alamat_sekolah', 'asal_ssb', 'gol_darah','tinggi','berat','penyakit','NISN','status',
+        'kartu_keluarga','akte_kelahiran','rapot'
     ];
 
     public function transaksi()

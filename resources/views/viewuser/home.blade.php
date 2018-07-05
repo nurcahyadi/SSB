@@ -2,30 +2,53 @@
 @include('header')
 @section('isi')
 <style media="screen">
-body {
-  background-image:url(image/background2.jpg); background-size:cover
+body{
+  background-image:url(image/stadium.jpg); background-size:cover;
 }
-img {
-  margin-top: 80px;
+img.utama{
+  margin-top: 100px;
+  height: 130px;
+  width: 130px;
 }
-h3{
+img.sosmed{
+  margin-top: 20px;
+}
+h3.bold{
   color: white;
-  font-family: fantasy-desdemona;
+  font-family: Arial Black;
+  font-weight: bold;
+}
+h5.bold{
+  color: white;
+  font-weight: bold;
 }
 
 </style>
 
 
-<div class="center logo">
-  <img src="image/logo1.png" width="200" height="200">
-  <h3>SEKOLAH SEPAKBOLA</h3>
-  <h3>TELKOM UNIV</h3>
-  <h3>KOTA BANDUNG</h3>
 
-  <img src="image/facebook.png" height="30" width="30">
-  <img src="image/twitter.png" height="30" width="30">
-  <img src="image/instagram.png" height="30" width="30">
-  <img src="image/youtube.png" height="30" width="30">
+<div class="center logo">
+
+  <img class="utama" src="image/logossbmutiara.jpg" width="200" height="200">
+
+
+  <h3 class="bold">
+    SEKOLAH SEPAKBOLA
+    <br>
+    MUTIARA 97
+    <br>
+    KOTA BOGOR
+  </h3>
+  {{-- <h3 class="bold">MUTIARA 97</h3>
+  <h3 class="bold">KOTA BOGOR</h3> --}}
+
+  <h5 class="bold">SATU HATI!</h5>
+  <h5 class="bold">SATU JIWA!</h5>
+
+  <a href="https://www.facebook.com/ssb.mutiara.1"> <img class="sosmed" src="image/facebook.png" height="30" width="30"></a>
+  <a href="https://twitter.com/ssbmutiara97"> <img class="sosmed" src="image/twitter.png" height="30" width="30"> </a>
+  <a href="https://www.instagram.com/ssb_mutiara_97/"> <img class="sosmed" src="image/instagram.png" height="30" width="30"> </a>
+  <a href="mailto:official@ssbmutiara97.com"> <img class="sosmed" src="image/email.png" height="30" width="30"> </a>
 </div>
 
 @endsection

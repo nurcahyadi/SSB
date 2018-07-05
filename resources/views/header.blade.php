@@ -3,8 +3,8 @@
 
 
   <ul id="dropdown1" class="dropdown-content">
-    <li><a href="{{route('profpemain')}}">Pelatih</a></li>
-    <li><a href="{{route('profpelatih')}}">Pemain</a></li>
+    <li><a href="{{route('profpelatih')}}">Pelatih</a></li>
+    <li><a href="{{route('profpemain')}}">Pemain</a></li>
   </ul>
 
 

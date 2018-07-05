@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Transaksi;
 use Illuminate\Http\Request;
+use App\User;
+use Alert;
 
 class TransaksiController extends Controller
 {
@@ -26,7 +28,10 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        return view('viewadmin.pembayaran.create');
+      $transaksi = User::where('role', '=' , null)->get();
+
+        // dd($transaksi);
+        return view('viewadmin.pembayaran.create')->with('transaksi',$transaksi);
     }
 
     /**
@@ -38,9 +43,12 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
       Transaksi::create([
+      'user_id'=>$request->nama,
       'tanggal_pembayaran' => $request->tanggal_pembayaran,
       'total_pembayaran'=>$request->total_pembayaran,
+      'keterangan'=>$request->keterangan,
       'status_pembayaran' => $request->status_pembayaran,
+      'ket_lainlain' => $request->ket_lainlain,
 
     ]);
 
@@ -64,9 +72,11 @@ class TransaksiController extends Controller
      * @param  \App\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Transaksi $transaksi)
+    public function edit($transaksi)
     {
-        //
+        $transaksiedit = Transaksi::find($transaksi);
+        // dd($transaksiedit);
+        return view('viewadmin.pembayaran.edit')->with('transaksiedit',$transaksiedit);
     }
 
     /**
@@ -76,9 +86,25 @@ class TransaksiController extends Controller
      * @param  \App\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaksi $transaksi)
+    public function update(Request $request, $transaksi)
     {
-        //
+      $transaksiupdate = Transaksi::find($transaksi);
+
+      // dd($transaksi);
+      $transaksiupdate->tanggal_pembayaran = $request->tanggal_pembayaran;
+      $transaksiupdate->total_pembayaran = $request->total_pembayaran;
+      if ($request->keterangan) {
+        $transaksiupdate->keterangan = $request->keterangan;
+      }
+      if ($request->status_pembayaran) {
+        $transaksiupdate->status_pembayaran = $request->status_pembayaran;
+      }
+      $aa = $transaksiupdate->save();
+      if ($aa) {
+        // Alert::success('Good job!')->persistent("Close");
+        alert()->success('You have been logged out.', 'Good bye!');
+      }
+      return redirect('/homepembayaran');
     }
 
     /**
@@ -91,4 +117,6 @@ class TransaksiController extends Controller
     {
         //
     }
+
+
 }

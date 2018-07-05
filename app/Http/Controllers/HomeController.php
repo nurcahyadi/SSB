@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\gallery;
+use App\prestasi;
 
 class HomeController extends Controller
 {
@@ -31,7 +34,8 @@ class HomeController extends Controller
     }
     public function gallery()
     {
-        return view('viewuser.gallery');
+        $gallery = gallery::all();
+        return view('viewuser.gallery')->with('gallery',$gallery);
     }
     public function daftar()
     {
@@ -39,14 +43,18 @@ class HomeController extends Controller
     }
     public function profpemain()
     {
-        return view('viewuser.profilepemain');
+        $pemain = User::where('status','=','Accept')->get();
+        // dd($pemain);
+        return view('viewuser.profilepemain')->with('pemain',$pemain);
     }
     public function profpelatih()
     {
-        return view('viewuser.profilepelatih');
+      $pelatih = User::where('role','=',3)->get();
+        return view('viewuser.profilepelatih')->with('pelatih',$pelatih);
     }
     public function about()
     {
-        return view('viewuser.about');
+        $prestasi = prestasi::all();
+        return view('viewuser.about')->with('prestasi',$prestasi);
     }
 }

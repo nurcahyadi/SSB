@@ -18,6 +18,7 @@ class CreateTransaksisTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('tanggal_pembayaran');
             $table->integer('total_pembayaran');
+            $table->string('keterangan')->nullable();
             $table->string('status_pembayaran');
             $table->timestamps();
 

@@ -19,15 +19,18 @@
 </div>
 
 <div class="row">
+  @foreach ($pemain as $value)
   <div class="col s6">
 
     <div class="card horizontal">
       <div class="card-image" >
-        <img src="image/cr.jpg" height="250" >
+        <img src="{{asset('storage/'.$value->foto)}}" height="250" >
       </div>
       <div class="card-stacked">
         <div class="card-content">
-          <p>Khaerul Umam</p>
+          <p>Nama : {{$value->nama_lengkap}}</p>
+          <p>Tempat Lahir : {{$value->tempat_lahir}}</p>
+          <p>Tanggal Lahir : {{$value->tanggal_lahir}}</p>
         </div>
         <div class="card-action">
           <a href="#">Read More</a>
@@ -35,23 +38,7 @@
       </div>
     </div>
   </div>
-
-  <div class="col s6">
-
-    <div class="card horizontal">
-      <div class="card-image" >
-        <img src="image/messi.jpg" height="250" >
-      </div>
-      <div class="card-stacked">
-        <div class="card-content">
-          <p>Muhammad Ikhsan Laisa</p>
-        </div>
-        <div class="card-action">
-          <a href="#">Read More</a>
-        </div>
-      </div>
-    </div>
-  </div>
+@endforeach
 </div>
 
 @endsection

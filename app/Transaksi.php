@@ -9,11 +9,11 @@ class Transaksi extends Model
     protected $table = 'transaksis';
 
     protected $fillable=[
-      'id','user_id','tanggal_pembayaran','total_pembayaran','status_pembayaran'
+      'id','user_id','tanggal_pembayaran','total_pembayaran','keterangan','status_pembayaran','ket_lainlain'
     ];
 
     public function user()
     {
-        return $this->hasOne('App\User');
+        return $this->belongsTo('App\User');
     }
 }

@@ -1,21 +1,30 @@
 @extends('tamplatetampilan')
 @include('headeradmin')
 @section('isi')
+
+  <div class="row">
+
+  </div>
+
 <br>
 <div class="row">
-<a href="/pembayaran" class="waves-effect waves-light btn-large col s2 offset-s5">Tambah</a>
+  <div class="col s2 offset-s5">
+    <a href="/pembayaran" class="waves-effect waves-light btn-large">Tambah</a>
+  </div>
 </div>
 
 
-  <table class="striped responsive-table">
+  <table id="table_id" class="display">
           <thead>
             <tr>
                 <th>No</th>
                 <th>Nama</th>
-                {{-- <th>Email</th> --}}
+                <th>Tanggal Lahir</th>
                 <th>Tanggal Pembayaran</th>
                 <th>Total Pembayaran</th>
+                <th>Keterangan</th>
                 <th>Status Pembayaran</th>
+                <th>Keterangan Lain-lain</th>
                 <th>Action</th>
             </tr>
           </thead>
@@ -25,22 +34,18 @@
             <tr>
               <td>{{++$index}}</td>
               <td>{{$value->user->nama_lengkap}}</td>
-              {{-- <td>{{$value->email}}</td> --}}
+              <td>{{$value->user->tanggal_lahir}}</td>
               <td>{{$value->tanggal_pembayaran}}</td>
               <td>{{$value->total_pembayaran}}</td>
+              <td>{{$value->keterangan}}</td>
               <td>{{$value->status_pembayaran}}</td>
+              <td>{{$value->ket_lainlain}}</td>
 
               <td>
                 <table>
-                    <a href=""><button class="btn btn-success">Show</button></a>
-                                 &nbsp;
-                    <a href=""><button class="btn btn-warning">Edit</button></a>
-                                &nbsp;
-                    <form action="" method="post">
-                                          {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="delete">
-                            <button class="btn btn-danger">Delete</button>
-                    </form>
+
+                    <a href="{{route('transaksiedit',['transaksiedit'=>$value->id])}}"><button class="btn btn-warning">Edit</button></a>
+
                 </table>
 
               </td>
@@ -49,4 +54,12 @@
               @endforeach
           </tbody>
         </table>
+
+
+        <script type="text/javascript">
+        $(document).ready( function () {
+            $('#table_id').DataTable();
+        } );
+
+        </script>
 @endsection

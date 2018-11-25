@@ -106,9 +106,7 @@ class PrestasiController extends Controller
     {
       $prestasi = prestasi::find($id);
       $delete= $prestasi->delete();
-      if ($delete) {
-        alert()->success('Success Message', 'Optional Title');
-        return redirect('/homeaboutadmin');
-      }
+      return redirect('/homeaboutadmin');
+      
     }
 }

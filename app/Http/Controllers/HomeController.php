@@ -54,7 +54,19 @@ class HomeController extends Controller
     }
     public function about()
     {
-        $prestasi = prestasi::all();
-        return view('viewuser.about')->with('prestasi',$prestasi);
+        return view('viewuser.about');
     }
+
+    public function prestasi()
+    {
+        $prestasi = prestasi::all();
+        return view('viewuser.prestasi')->with('prestasi',$prestasi);
+    }
+
+    public function tentangssb()
+    {
+        return view('viewuser.profilssb');
+    }
+
+
 }

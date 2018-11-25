@@ -1,126 +1,169 @@
 @extends('tamplatetampilan')
 @include('headeradmin')
 @section('isi')
-{{-- <div class="row">
-  <div class="col s4 offset-s8">
-    <nav>
-      <div class="nav-wrapper">
-        <form>
-          <div class="input-field grey darken-4">
-            <input id="search" type="search" placeholder="Search" required>
-            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-            <i class="material-icons">close</i>
+  <head>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="{{asset('css/custom.css')}}" rel="stylesheet" type="text/css" />
+
+
+
+  </head>
+  <style media="screen">
+    .lineheight{
+      line-height: 0;
+    }
+  </style>
+  <body>
+
+    <main>
+    <section class="content">
+
+      <!-- Stat Boxes -->
+      <div class="row">
+        <div class="col l3 s6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>{{$pendaftar}}</h3>
+              <p>Jumlah Pendaftar</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="{{route('homepemainadmin')}}" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </form>
-      </div>
-    </nav>
-  </div>
-</div> --}}
+          </div><!-- ./col -->
+          <div class="col l3 s6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+              <div class="inner">
+                <h3>{{$pelatih}}</h3>
+                <p>Jumlah Pelatih</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="{{route('homepelatihadmin')}}" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+            </div><!-- ./col -->
+            <div class="col l3 s6">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h3>{{$prestasi}}</h3>
+                  <p>Jumlah Prestasi</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-email"></i>
+                </div>
+                <a href="{{route('homeaboutadmin')}}" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+              </div><!-- ./col -->
+
+              <div class="col l3 s6">
+                <!-- small box -->
+                <div class="small-box purple accent-4">
+                  <div class="inner">
+                    <h3>{{$gallery}}</h3>
+                    <p>Jumlah Gallery</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                  </div>
+                  <a href="{{route('homegalleryadmin')}}" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+                </div><!-- ./col -->
+                
+              <div class="col l3 s6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                  <div class="inner">
+                    <h3>{{$totalpembayaran}}</h3>
+                    <p>Total Pembayaran</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                  </div>
+                  <a href="{{route('homepembayaran')}}" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
 
 
-  <table id="table_id" class="display">
-          <thead>
-            <tr>
-                <th>No</th>
-                <th>Foto</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Tanggal Lahir</th>
-                <th>No.Telepon</th>
-                <th>Penyakit</th>
-                <th>Action</th>
-                <th>Konfirmasi</th>
-                <th>Status</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            @foreach ($user as $index => $value)
-            <tr>
-              <td>{{++$index}}</td>
-              <td><img src="{{asset('storage/'.$value->foto)}}" style="width: 100px"></td>
-              <td>{{$value->nama_lengkap}}</td>
-              <td>{{$value->email}}</td>
-              <td>{{$value->tanggal_lahir}}</td>
-              <td>{{$value->phone}}</td>
-              <td>{{$value->penyakit}}</td>
-
-              <td>
-                <table>
-                    <a href="{{route('detailuser',['detailuser'=>$value->id])}}"><button class="btn btn-success btn-small green accent-4">Show</button></a>
-                                 &nbsp;
-                    <a href="{{route('useredit',['useredit'=>$value->id])}}"><button class="btn btn-warning btn-small">Edit</button></a>
-                                &nbsp;
-
-                                <form action="/delete/{{$value->id}}" method="post">
-                                                      {{ csrf_field() }}
-                                    <input type="hidden" name="_method" value="delete">
-                                        <button class="btn btn-danger btn-small red accent-4">Delete</button>
-                                </form>
-                </table>
-
-              </td>
-              <td>
-                <table>
-                  <form action="{{route('konfirmasi',['konfirmasi'=>$value->id])}}" method="post">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="_method" value="PUT">
-                      <button class="btn btn-success btn-small green accent-4" >Setujui</button>
-                  </form>
+                {{-- <div class="col l3 s6">
+                  <!-- small box -->
+                  <div class="small-box bg-green">
+                    <div class="inner">
+                      <h3>69</h3>
+                      <p>Jumlah Pelatih</p>
+                    </div>
+                    <div class="icon">
+                      <i class="ion ion-stats-bars"></i>
+                    </div>
+                    <a href="#" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+                  </div>
+                  </div><!-- ./col -->
+                  <div class="col l3 s6">
+                    <!-- small box -->
+                    <div class="small-box bg-yellow">
+                      <div class="inner">
+                        <h3>36</h3>
+                        <p>Jumlah Prestasi</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-email"></i>
+                      </div>
+                      <a href="#" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                    </div><!-- ./col -->
+                    <div class="col l3 s6">
+                      <!-- small box -->
+                      <div class="small-box bg-red">
+                        <div class="inner">
+                          <h3>1337</h3>
+                          <p>Total Pembayaran</p>
+                        </div>
+                        <div class="icon">
+                          <i class="ion ion-pie-graph"></i>
+                        </div>
+                        <a href="#" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+                      </div>
+                    </div> --}}
 
 
-                </table>
-
-              </td>
-              <td>{{$value->status}}</td>
-            </tr>
-
-              @endforeach
-          </tbody>
-        </table>
-
-        {{-- <table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-        </tr>
-        <tr>
-            <td>Row 2 Data 1</td>
-            <td>Row 2 Data 2</td>
-        </tr>
-    </tbody>
-</table> --}}
+          </div>
+        </section>
+        </main>
 
 
-<script type="text/javascript">
-$(document).ready( function () {
-    $('#table_id').DataTable();
-} );
+        <!-- So this is basically a hack, until I come up with a better solution. autocomplete is overridden
+        in the materialize js file & I don't want that.
+        -->
+        <!-- Yo dawg, I heard you like hacks. So I hacked your hack. (moved the sidenav js up so it actually works) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+        <script>
+        // Hide sideNav
+        $('.button-collapse').sideNav({
+        menuWidth: 300, // Default is 300
+        edge: 'left', // Choose the horizontal origin
+        closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+          draggable: true // Choose whether you can drag to open on touch screens
+          });
+          $(document).ready(function(){
+          $('.tooltipped').tooltip({delay: 50});
+          });
+          $('select').material_select();
+          $('.collapsible').collapsible();
+          </script>
+
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      </body>
 
 
-swal({
-  title: "Are you sure?",
-  text: "Once deleted, you will not be able to recover this imaginary file!",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-})
-.then((willDelete) => {
-  if (willDelete) {
-    swal("Poof! Your imaginary file has been deleted!", {
-      icon: "success",
-    });
-  } else {
-    swal("Your imaginary file is safe!");
-  }
-});
 
-</script>
 @endsection

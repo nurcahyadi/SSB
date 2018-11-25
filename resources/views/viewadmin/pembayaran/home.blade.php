@@ -9,12 +9,12 @@
 <br>
 <div class="row">
   <div class="col s2 offset-s5">
-    <a href="/pembayaran" class="waves-effect waves-light btn-large">Tambah</a>
+    <a href="/pembayaran" class="waves-effect waves-light btn-small">Tambah</a>
   </div>
 </div>
 
 
-  <table id="table_id" class="display">
+  <table id="table_id" class="display responsive-table">
           <thead>
             <tr>
                 <th>No</th>

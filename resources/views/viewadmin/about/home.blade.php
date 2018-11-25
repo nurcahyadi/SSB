@@ -5,7 +5,7 @@
 <div class="pad">
 <a href="/toabout"> <button type="button" class="btn btn-primary" style="float: right; margin-right:20px; margin-top:20px;">Tambah</button></a>
 
-  <table id="table_id" class="display">
+  <table id="table_id" class="display responsive-table">
           <thead>
             <tr>
                 <th>No</th>

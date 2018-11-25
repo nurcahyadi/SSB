@@ -86,7 +86,7 @@ class GalleryController extends Controller
      */
     public function update(Request $request,$id)
     {
-      $gallery = gallery::find($id);  
+      $gallery = gallery::find($id);
       if ($request->foto_gallery) {
           $path = Storage::disk('public')->put('gallery',$request->foto_gallery);
         } else {
@@ -112,9 +112,7 @@ class GalleryController extends Controller
       // dd($id);
       $gallerya = gallery::find($id);
       $delete= $gallerya->delete();
-      if ($delete) {
-        alert()->success('Success Message', 'Optional Title');
-        return redirect('/homegalleryadmin');
-      }
+      return redirect('/homegalleryadmin');
+    
     }
 }

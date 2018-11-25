@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Storage;
 use App\User;
 use Alert;
+use App\prestasi;
+use App\gallery;
+use App\Transaksi;
 
 class UserController extends Controller
 {
@@ -26,6 +29,21 @@ class UserController extends Controller
     $user = User::where('role', '=' , null)->orderBy('id', 'dsc')->get();
     // dd($article);
     return view('viewadmin.profile.homepemain',['user'=>$user]);
+    }
+
+    public function indexhomeadmin()
+    {
+      $pendaftar = User::select('role')->where('role', '=' , null)->count();
+      $pelatih = User::select('role')->where('role', '=' , 3)->count();
+      $prestasi = prestasi::count();
+      $totalpembayaran = Transaksi::sum('total_pembayaran');
+      $gallery = gallery::count();
+      // dd($totalpembayaran);
+
+
+      // return $pendaftar;
+      // return $pelatih;
+    return view('viewadmin.home',['pendaftar'=>$pendaftar,'pelatih'=>$pelatih,'prestasi'=>$prestasi,'totalpembayaran'=>$totalpembayaran,'gallery'=>$gallery]);
     }
 
     /**
@@ -199,10 +217,8 @@ class UserController extends Controller
       $user = User::find($id);
       $delete = $user->delete();
       // return redirect('/homeadmin');
-      if ($delete) {
-        alert()->success('Success Message', 'Optional Title');
-        return redirect('/homepemainadmin');
-      }
+      return redirect('/homepemainadmin');
+
 
       // swal({
       //         title: "Are you sure?",
@@ -322,15 +338,13 @@ class UserController extends Controller
       $pelatih->save();
 
       return redirect('/homepelatihadmin');
-    }
+    } 
     public function destroypelatih($id){
       $pelatih = User::find($id);
       $delete = $pelatih->delete();
       // return redirect('/homeadmin');
-      if ($delete) {
-        alert()->success('Success Message', 'Optional Title');
-        return redirect('/homepelatihadmin');
-      }
+      return redirect('/homepelatihadmin');
+
     }
 
 

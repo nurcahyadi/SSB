@@ -6,10 +6,15 @@
     margin-top: 10px;
   }
 </style>
-<div class="pad">
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 
 
-  <table id="table_id" class="display">
+</head>
+<div class="pad ">
+
+
+  <table id="table_id" class="display responsive-table">
           <thead>
             <tr>
                 <th>No</th>
@@ -35,7 +40,7 @@
               <td>{{$value->tanggal_lahir}}</td>
               <td>{{$value->phone}}</td>
               <td>{{$value->penyakit}}</td>
-              
+
               <td>
                 <table>
                     <a href="{{route('detailuser',['detailuser'=>$value->id])}}"><button class="btn btn-success btn-small green accent-4">Show</button></a>
@@ -95,5 +100,10 @@ swal({
   }
 });
 
+$('#myTable').DataTable( {
+    responsive: true
+} );
+
 </script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 @endsection

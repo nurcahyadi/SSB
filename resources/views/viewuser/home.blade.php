@@ -1,6 +1,10 @@
 @extends('tamplatetampilan')
 @include('header')
 @section('isi')
+  <head>
+  <link rel="icon" type="image/png" href="image/logossbmutiara2.png">
+  <title>Home</title>
+  </head>
 <style media="screen">
 body{
   background-image:url(image/stadium.jpg); background-size:cover;
@@ -29,7 +33,7 @@ h5.bold{
 
 <div class="center logo">
 
-  <img class="utama" src="image/logossbmutiara.jpg" width="200" height="200">
+  <img class="utama" src="image/logossbmutiara2.png" width="200" height="200">
 
 
   <h3 class="bold">

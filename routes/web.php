@@ -25,8 +25,11 @@ Route::get('/gallery', 'HomeController@gallery')->name('gallery');
 Route::get('/daftar', 'HomeController@daftar')->name('daftar');
 Route::get('/profpemain', 'HomeController@profpemain')->name('profpemain');
 Route::get('/profpelatih', 'HomeController@profpelatih')->name('profpelatih');
+Route::get('/tentangssb', 'HomeController@tentangssb')->name('tentangssb');
+Route::get('/prestasi', 'HomeController@prestasi')->name('prestasi');
+
 Route::get('/about', 'HomeController@about')->name('about');
-Route::get('/homeadmin','UserController@index')->name('homeadmin')->middleware('auth');
+Route::get('/homeadmin','UserController@indexhomeadmin')->name('homeadmin')->middleware('auth');
 Route::get('/homepembayaran','TransaksiController@index')->name('homepembayaran');
 Route::get('/show/{id}','UserController@show')->name('detailuser');
 Route::get('/tampiledit/{id}','UserController@edit')->name('useredit');
